@@ -13,11 +13,10 @@ server.use(jsonServer.rewriter({
 server.use(jsonServer.bodyParser)
 server.use(middlewares)
 server.use((req, res, next) => {
-	res.headers.dirrr = __dirname
 	console.log(__dirname)
 	next()
 })
 
 server.use(router)
 
-server.listen(3000, () => console.log(middlewares))
+server.listen(3000, () => console.log('middlewares'))
