@@ -4,6 +4,7 @@
   "license": "fiammanda",
   "author": "fiammanda",
   "description": "API for a personal site.",
+  "main": "index.js",
   "scripts": {
     "start": "node server.js",
     "server": "json-server --watch db.json --port 3000"

@@ -14,7 +14,7 @@ server.use(jsonServer.bodyParser)
 server.use(middlewares)
 server.use((req, res, next) => {
 	res.headers.dirrr = __dirname
-	console.log(res.headers.date)
+	console.log(__dirname)
 	next()
 })
 
