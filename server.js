@@ -5,10 +5,15 @@ const router = jsonServer.router(path.join(__dirname, "db.json"))
 const middlewares = jsonServer.defaults()
 const key = process.env.KEY || 'key'
 
+server.use(jsonServer.rewriter({
+	'/api/:id/comment': '/pages/:id/comments',
+	'/api/:id': '/pages/:id',
+	'/api': '/pages?_limit=200'
+}))
 server.use(jsonServer.bodyParser)
 server.use(middlewares)
 server.get((req, res, next) => {
-	res.body.dirrr = __dirname
+	req.headers.dirrr = __dirname
 	next()
 })
 
