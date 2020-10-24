@@ -12,11 +12,12 @@ server.use(jsonServer.rewriter({
 }))
 server.use(jsonServer.bodyParser)
 server.use(middlewares)
-server.get((req, res, next) => {
-	req.headers.dirrr = __dirname
+server.use((req, res, next) => {
+	res.headers.dirrr = __dirname
+	console.log(res.headers.date)
 	next()
 })
 
 server.use(router)
 
-server.listen(3000, () => console.log("JSON Server is running"))
+server.listen(3000, () => console.log(middlewares))
