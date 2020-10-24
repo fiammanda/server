@@ -6,11 +6,11 @@
   "description": "API for a personal site.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "json-server --watch db.json --port 3000"
+    "start": "node server.js"
   },
   "dependencies": {
     "json-server": "^0.16.1",
-    "vercel": "^20.1.1"
+    "vercel": "^20.1.1",
+    "serve-static": "^1.13.2"
   }
 }
