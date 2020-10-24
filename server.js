@@ -12,7 +12,9 @@ const whitelist = [
 	"api.fiammanda.vercel.app"
 ]
 
-server.use(static(path.join(__dirname, "public")))
+server.use(static(path.join(__dirname, "public"), {
+  maxAge: "1d"
+}))
 server.use(jsonServer.rewriter({
 	"/admin/": "/admin.html",
 	"/api/:id/comment": "/pages/:id/comments",
@@ -25,11 +27,9 @@ server.use((req, res, next) => {
 	console.log(req.url)
 	if (!whitelist.includes(req.headers['host'])) {
 		res.status(403)
-		throw 'Domain not whitelisted.'
 	} else if (req.headers['key'] !== key) {
 		if (req.method === 'PUT' || req.method === 'DELETE' || req.url === '/db' || req.url.indexOf('_embed=comments') > 0) {
 			res.status(403)
-			throw 'Request not authorized.'
 		}
 	}
 	next()
