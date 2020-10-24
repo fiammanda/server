@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet"media="print" onload="this.media='all'">
+<title>Admin | The F Word</title>
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	html {
+		font-size: 16px;
+		user-select: none;
+	}
+	body {
+		font-family: "Noto Sans CJK SC", "Microsoft Yahei", "Noto Sans SC", serif;
+		transition: opacity .25s ease-in-out;
+	}
+	body[data-load] {
+		opacity: 0;
+	}
+	a {
+		text-decoration: none;
+		color: hsla(0,0%,0%,.5);
+		background: hsla(0,0%,100%,.5);
+		border-radius: 1px;
+		transition: background .25s ease-in-out;
+	}
+	div {
+	}
+	.grid {
+		display: grid;
+	}
+	#pages .grid {
+		grid-template-columns: 1fr 4fr 4fr 1fr 1fr 1fr 2fr;
+	}
+</style>
+</head>
+<body>
+
+<main>
+
+<section id="pages">
+	<h2>Pages</h2>
+	<div class="grid"></div>
+</section>
+
+<section id="pages">
+	<h2>Comments</h2>
+	<div class="grid"></div>
+</section>
+</main>
+
+
+<script type="text/javascript">
+	const KEY = localStorage.getItem('KEY');
+	fetch('/db', {
+		headers: {
+			'key': KEY
+		}
+	}).then(res => res.json()).then(res => {
+		let db = res, dbPages = '';
+		db.pages.forEach(page => {
+			dbPages += `<span aria-label="id">${page.id}</span>`;
+			dbPages += `<span aria-label="url">${page.url}</span>`;
+			dbPages += `<span aria-label="title">${page.title}</span>`;
+			dbPages += `<span aria-label="pv">${page.pv}</span>`;
+			dbPages += `<span aria-label="uv">${page.uv}</span>`;
+			dbPages += `<span aria-label="like">${page.like}</span>`;
+			dbPages += `<span aria-label="updated">${new Date(page.updated).toLocaleString('sv-SE')}</span>`;
+		})
+		document.querySelector('#pages .grid').innerHTML = dbPages;
+	}).catch((error) => {
+		console.error('Error:', error);
+	});
+
+</script>
+</body>
+</html>

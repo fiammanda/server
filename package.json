@@ -1,0 +1,16 @@
+{
+  "name": "the-f-server",
+  "version": "1.0.0",
+  "license": "fiammanda",
+  "author": "fiammanda",
+  "description": "API for a personal site.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "json-server --watch db.json --port 3000"
+  },
+  "dependencies": {
+    "json-server": "^0.16.1",
+    "vercel": "^20.1.1"
+  }
+}
