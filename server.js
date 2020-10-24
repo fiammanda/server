@@ -7,6 +7,10 @@ const key = process.env.KEY || 'key'
 
 server.use(jsonServer.bodyParser)
 server.use(middlewares)
+server.get((req, res, next) => {
+	res.body.dirrr = __dirname
+	next()
+})
 
 server.use(router)
 
