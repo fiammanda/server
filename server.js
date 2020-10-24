@@ -1,6 +1,7 @@
+const path = require("path")
 const jsonServer = require("json-server")
 const server = jsonServer.create()
-const router = jsonServer.router("/var/task/db.json")
+const router = jsonServer.router(path.join(__dirname, "db.json"))
 const middlewares = jsonServer.defaults()
 const key = process.env.KEY || 'key'
 
