@@ -1,7 +1,6 @@
 {
   "name": "the-f-server",
   "version": "1.0.0",
-  "license": "fiammanda",
   "author": "fiammanda",
   "description": "API for a personal site.",
   "main": "index.js",

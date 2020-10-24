@@ -1,10 +1,12 @@
 const path = require("path")
+const static = require("serve-static")
 const jsonServer = require("json-server")
 const server = jsonServer.create()
 const router = jsonServer.router(path.join(__dirname, "db.json"))
 const middlewares = jsonServer.defaults()
 const key = process.env.KEY || 'key'
 
+server.use(static(path.join(__dirname, "public")))
 server.use(jsonServer.rewriter({
 	"/api/:id/comment": "/pages/:id/comments",
 	"/api/:id": "/pages/:id",
